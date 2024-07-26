@@ -26,7 +26,7 @@ var dragging : bool = false
 var aiming : bool = false
 var current_state
 var ready_to_fire : bool = true
-var cooldown_timer_active : bool = false
+var cooldown_timer_inactive : bool = true
 var pot_projectile
 
 
@@ -68,7 +68,8 @@ func _process(delta):
 
 
 		SlingshotState.cooldown:
-			start_cooldown_timer()
+			if cooldown_timer_inactive and not ready_to_fire:
+				start_cooldown_timer()
 			if ready_to_fire:
 				spawn_pot()
 				current_state = SlingshotState.idle
@@ -82,9 +83,8 @@ func spawn_pot():
 
 
 func start_cooldown_timer():
-	if not cooldown_timer_active:
-		CooldownTimer.start()
-	cooldown_timer_active = true
+	CooldownTimer.start()
+	cooldown_timer_inactive = false
 
 
 func fire(projectile, velocity, distance):
@@ -111,7 +111,7 @@ func _on_drag_disabled():
 
 func _on_sling_cooldown_timeout():
 	ready_to_fire = true
-	cooldown_timer_active = false
+	cooldown_timer_inactive = true
 	emit_signal("cooldown_finished")
 	
 

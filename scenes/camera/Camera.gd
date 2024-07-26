@@ -13,6 +13,7 @@ enum CameraState{
 @onready var Slingshot : Node2D = $"../Slingshot"
 @onready var CameraBoundary : Area2D = %CameraBoundary
 
+
 var camera_state = CameraState.default
 var threshold: int = 45
 var step: int = 8
@@ -33,8 +34,7 @@ func _process(delta):
 	current_pot = get_tree().get_first_node_in_group("PotProjectile")
 	if current_pot: connect_pot()
 	local_mouse_pos = get_viewport().get_mouse_position()
-	viewport_size = get_viewport().size
-	print_debug(local_mouse_pos)
+	viewport_size = get_viewport_rect().size
 
 
 	match camera_state:
@@ -42,16 +42,15 @@ func _process(delta):
 		CameraState.default:
 			if local_mouse_pos.x < threshold and left_scroll:
 				position.x -= step
-			elif local_mouse_pos.x >= (640) - threshold and right_scroll:
+			elif local_mouse_pos.x >= (viewport_size.x) - threshold and right_scroll:
 				position.x += step
 
 		CameraState.follow:
-			location(current_pot.global_position)
+			change_global_location(current_pot.global_position)
 
 
-func location(location):
+func change_global_location(location):
 	global_position = location
-
 
 
 func connect_pot():
@@ -78,7 +77,7 @@ func _on_pot_thrown():
 
 func _on_cooldown_finished():
 	camera_state = CameraState.default
-	location(DefaultCameraLocation.global_position)
+	change_global_location(DefaultCameraLocation.global_position)
 
 
 func _on_camera_boundary_body_entered(body):

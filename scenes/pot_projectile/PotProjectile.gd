@@ -5,6 +5,8 @@ signal pot_impacted
 signal pot_thrown
 
 
+@export var dmg : int = 50
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	gravity_scale = 0
@@ -21,5 +23,6 @@ func throw_pot():
 	
 
 func _on_area_2d_body_entered(body):
+	if body.has_method("take_damage"): body.take_damage(dmg)
 	emit_signal("pot_impacted")
 	queue_free()

@@ -592,7 +592,7 @@ texture = ExtResource("6_fgq2c")
 position = Vector2(267, -128)
 
 [node name="Slingshot" parent="." instance=ExtResource("8_iljwq")]
-position = Vector2(265, -128)
+position = Vector2(260, -180)
 
 [node name="Camera" parent="." instance=ExtResource("8_qer8s")]
 position = Vector2(267, -129)

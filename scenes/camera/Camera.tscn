@@ -10,7 +10,6 @@ size = Vector2(25, 367)
 
 [node name="Camera2D" type="Camera2D"]
 position = Vector2(3, 0)
-scale = Vector2(-1, -1)
 position_smoothing_enabled = true
 position_smoothing_speed = 25.0
 script = ExtResource("1_0nsjl")

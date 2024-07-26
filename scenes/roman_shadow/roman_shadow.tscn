@@ -1,19 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://ye8htlc6tagg"]
+[gd_scene load_steps=20 format=3 uid="uid://ye8htlc6tagg"]
 
 [ext_resource type="Script" path="res://scenes/roman_shadow/roman_shadow.gd" id="1_aqns1"]
 [ext_resource type="Texture2D" uid="uid://cjo7dpg37aqst" path="res://assets/roman_shadow.png" id="1_ilb4q"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r1jqr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbw5q"]
 atlas = ExtResource("1_ilb4q")
 region = Rect2(0, 190, 96, 95)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g7vih"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s30jn"]
 atlas = ExtResource("1_ilb4q")
 region = Rect2(96, 190, 96, 95)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7bp7e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y23nv"]
 atlas = ExtResource("1_ilb4q")
 region = Rect2(192, 190, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhnh5"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(288, 95, 96, 95)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dv3nt"]
 atlas = ExtResource("1_ilb4q")
@@ -51,17 +55,20 @@ region = Rect2(288, 95, 96, 95)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r1jqr")
+"texture": SubResource("AtlasTexture_gbw5q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g7vih")
+"texture": SubResource("AtlasTexture_s30jn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7bp7e")
+"texture": SubResource("AtlasTexture_y23nv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhnh5")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 57.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -99,26 +106,67 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynpju"]
-size = Vector2(24, 59)
+size = Vector2(25, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_haepp"]
 size = Vector2(40, 53)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc4ln"]
+bg_color = Color(0.105882, 0.0431373, 0, 0.466667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imhxu"]
+bg_color = Color(0.603922, 0, 0.0588235, 0.776471)
 
 [node name="ShadowOfRome" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_aqns1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimationPlayer" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bccmd")
 animation = &"walk"
-frame_progress = 0.729016
+frame_progress = 0.0641377
 
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-18, -4.5)
+position = Vector2(-20.5, -4)
 shape = SubResource("RectangleShape2D_ynpju")
 
 [node name="HurtBox" type="CollisionShape2D" parent="."]
 position = Vector2(13, -2.5)
 shape = SubResource("RectangleShape2D_haepp")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -27.5
+offset_top = -37.5
+offset_right = 38.5
+offset_bottom = -31.5
+theme_override_styles/background = SubResource("StyleBoxFlat_kc4ln")
+theme_override_styles/fill = SubResource("StyleBoxFlat_imhxu")
+value = 90.0
+show_percentage = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emission_shape = 2
+emission_sphere_radius = 38.91
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.01
+orbit_velocity_max = 0.02
+linear_accel_min = -100.0
+linear_accel_max = 9.09
+radial_accel_min = -100.0
+radial_accel_max = 100.0
+scale_amount_max = 3.0
+color = Color(0.160784, 0.160784, 0.160784, 0.882353)
+anim_speed_min = 45.13
+anim_speed_max = 77.58
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
