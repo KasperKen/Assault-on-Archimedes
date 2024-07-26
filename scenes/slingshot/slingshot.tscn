@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg71nnetl3fyu"]
+
+[ext_resource type="Texture2D" uid="uid://bkdp0nf4v24lf" path="res://assets/sling.png" id="1_7jipr"]
+[ext_resource type="Script" path="res://scenes/slingshot/slingshot.gd" id="1_a5mq1"]
+[ext_resource type="PackedScene" uid="uid://dt5dkiw3sjjh4" path="res://components/drag_component/drag_component.tscn" id="2_7w3po"]
+[ext_resource type="AudioStream" uid="uid://r02bycrkscw7" path="res://assets/sfx/slingshot.wav" id="4_uk1nj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqn4h"]
+radius = 59.4138
+
+[node name="Slingshot" type="Node2D"]
+position = Vector2(-1, -1)
+script = ExtResource("1_a5mq1")
+
+[node name="Center" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6, -49)
+
+[node name="DragComponent" parent="." instance=ExtResource("2_7w3po")]
+unique_name_in_owner = true
+position = Vector2(-88, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragComponent"]
+position = Vector2(92, -37)
+shape = SubResource("CircleShape2D_kqn4h")
+
+[node name="BackPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(32, -49)
+
+[node name="BackLine" type="Line2D" parent="BackPoint"]
+unique_name_in_owner = true
+position = Vector2(-32, 49)
+points = PackedVector2Array(-28.9231, 11, -86, 12)
+default_color = Color(0, 0, 0, 1)
+
+[node name="FrontPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-17, -49)
+
+[node name="FrontLine" type="Line2D" parent="FrontPoint"]
+unique_name_in_owner = true
+position = Vector2(17, 49)
+points = PackedVector2Array(-3, 5, 51, 5)
+default_color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.5, -0.999996)
+texture = ExtResource("1_7jipr")
+
+[node name="SlingCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_uk1nj")
+pitch_scale = 0.78
+
+[connection signal="timeout" from="SlingCooldown" to="." method="_on_sling_cooldown_timeout"]

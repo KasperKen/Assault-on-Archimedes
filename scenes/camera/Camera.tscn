@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bppk3o2d4wr4n"]
+
+[ext_resource type="Script" path="res://scenes/camera/Camera.gd" id="1_0nsjl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aktbk"]
+size = Vector2(33, 349)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fve6"]
+size = Vector2(25, 367)
+
+[node name="Camera2D" type="Camera2D"]
+scale = Vector2(-1, -1)
+position_smoothing_enabled = true
+position_smoothing_speed = 25.0
+script = ExtResource("1_0nsjl")
+
+[node name="CameraBoundary" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="BoundraryLeft" type="CollisionShape2D" parent="CameraBoundary"]
+position = Vector2(639, 47)
+shape = SubResource("RectangleShape2D_aktbk")
+
+[node name="BoundaryRight" type="CollisionShape2D" parent="CameraBoundary"]
+position = Vector2(-638, 51)
+shape = SubResource("RectangleShape2D_4fve6")
+
+[connection signal="body_entered" from="CameraBoundary" to="." method="_on_camera_boundary_body_entered"]
+[connection signal="body_exited" from="CameraBoundary" to="." method="_on_camera_boundary_body_exited"]

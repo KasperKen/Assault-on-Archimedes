@@ -1,0 +1,124 @@
+[gd_scene load_steps=17 format=3 uid="uid://ye8htlc6tagg"]
+
+[ext_resource type="Script" path="res://scenes/roman_shadow/roman_shadow.gd" id="1_aqns1"]
+[ext_resource type="Texture2D" uid="uid://cjo7dpg37aqst" path="res://assets/roman_shadow.png" id="1_ilb4q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1jqr"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(0, 190, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7vih"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(96, 190, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bp7e"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(192, 190, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv3nt"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(0, 0, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctkf0"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(96, 0, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwlr4"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(192, 0, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxsvh"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(288, 0, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd1nq"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(0, 95, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ucv4"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(96, 95, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2qm7"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(192, 95, 96, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fv0b"]
+atlas = ExtResource("1_ilb4q")
+region = Rect2(288, 95, 96, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bccmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1jqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7vih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bp7e")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 57.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv3nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctkf0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwlr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxsvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd1nq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ucv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2qm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fv0b")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynpju"]
+size = Vector2(24, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haepp"]
+size = Vector2(40, 53)
+
+[node name="ShadowOfRome" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_aqns1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bccmd")
+animation = &"walk"
+frame_progress = 0.729016
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-18, -4.5)
+shape = SubResource("RectangleShape2D_ynpju")
+
+[node name="HurtBox" type="CollisionShape2D" parent="."]
+position = Vector2(13, -2.5)
+shape = SubResource("RectangleShape2D_haepp")
