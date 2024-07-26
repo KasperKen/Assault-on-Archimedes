@@ -2,8 +2,9 @@ extends Camera2D
 
 
 enum CameraState{
+	idle,
 	default,
-	follow,
+	follow
 }
 
 
@@ -33,21 +34,19 @@ func _process(delta):
 	if current_pot: connect_pot()
 	local_mouse_pos = get_viewport().get_mouse_position()
 	viewport_size = get_viewport().size
-	
-	
+	print_debug(local_mouse_pos)
+
+
 	match camera_state:
+
 		CameraState.default:
-			
 			if local_mouse_pos.x < threshold and left_scroll:
 				position.x -= step
-			elif local_mouse_pos.x >= viewport_size.x - threshold and right_scroll:
+			elif local_mouse_pos.x >= (640) - threshold and right_scroll:
 				position.x += step
-
 
 		CameraState.follow:
 			location(current_pot.global_position)
-
-	pass
 
 
 func location(location):
@@ -70,13 +69,15 @@ func disconnect_pot():
 
 func _on_pot_impacted():
 	disconnect_pot()
-	camera_state = CameraState.default
+	camera_state = CameraState.idle
+
 
 func _on_pot_thrown():
 	camera_state = CameraState.follow
 	
 
 func _on_cooldown_finished():
+	camera_state = CameraState.default
 	location(DefaultCameraLocation.global_position)
 
 

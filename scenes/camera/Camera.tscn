@@ -9,6 +9,7 @@ size = Vector2(33, 349)
 size = Vector2(25, 367)
 
 [node name="Camera2D" type="Camera2D"]
+position = Vector2(3, 0)
 scale = Vector2(-1, -1)
 position_smoothing_enabled = true
 position_smoothing_speed = 25.0
@@ -18,11 +19,11 @@ script = ExtResource("1_0nsjl")
 unique_name_in_owner = true
 
 [node name="BoundraryLeft" type="CollisionShape2D" parent="CameraBoundary"]
-position = Vector2(639, 47)
+position = Vector2(321, 2)
 shape = SubResource("RectangleShape2D_aktbk")
 
 [node name="BoundaryRight" type="CollisionShape2D" parent="CameraBoundary"]
-position = Vector2(-638, 51)
+position = Vector2(-323, 8)
 shape = SubResource("RectangleShape2D_4fve6")
 
 [connection signal="body_entered" from="CameraBoundary" to="." method="_on_camera_boundary_body_entered"]

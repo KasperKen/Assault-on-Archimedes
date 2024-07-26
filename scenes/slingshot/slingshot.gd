@@ -72,7 +72,6 @@ func _process(delta):
 			if ready_to_fire:
 				spawn_pot()
 				current_state = SlingshotState.idle
-	pass
 
 
 func spawn_pot():
