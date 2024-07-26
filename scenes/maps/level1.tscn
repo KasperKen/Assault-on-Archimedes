@@ -585,7 +585,7 @@ position = Vector2(1445, 9)
 motion_mirroring = Vector2(2043, 0)
 
 [node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="ParallaxBackground/ForegroundTrees2"]
-position = Vector2(-117, -143)
+position = Vector2(-118, -144)
 texture = ExtResource("6_fgq2c")
 
 [node name="DefaultCameraLocation" type="Marker2D" parent="."]

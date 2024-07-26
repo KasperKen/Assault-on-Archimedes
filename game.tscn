@@ -15,4 +15,3 @@ position = Vector2(1002, -30)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Level"]
 stream = ExtResource("9_32orb")
-autoplay = true
