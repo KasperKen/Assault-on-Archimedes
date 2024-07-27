@@ -577,7 +577,7 @@ position = Vector2(265, 8)
 motion_mirroring = Vector2(2044, 0)
 
 [node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="ParallaxBackground/ForegroundTrees"]
-position = Vector2(38, -143)
+position = Vector2(39, -148)
 texture = ExtResource("6_fgq2c")
 
 [node name="ForegroundTrees2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -589,10 +589,10 @@ position = Vector2(-118, -144)
 texture = ExtResource("6_fgq2c")
 
 [node name="DefaultCameraLocation" type="Marker2D" parent="."]
-position = Vector2(267, -128)
+position = Vector2(282, -191)
 
 [node name="Slingshot" parent="." instance=ExtResource("8_iljwq")]
-position = Vector2(260, -180)
+position = Vector2(260, -178)
 
 [node name="Camera" parent="." instance=ExtResource("8_qer8s")]
-position = Vector2(267, -129)
+position = Vector2(282, -191)

@@ -18,7 +18,9 @@ enum SlingshotState{
 @onready var BackPoint : Marker2D = %BackPoint
 @onready var BackLine : Line2D = %BackLine
 @onready var CooldownTimer : Timer = %SlingCooldown
-@onready var SfxPlayer : AudioStreamPlayer = %SfxPlayer
+@onready var SfxPlayer : Node = $SfxComponent
+@onready var fire_sfx = preload("res://assets/sfx/DESTRUCTION Break Impact Smash Short 03.wav")
+@onready var break_sfx = preload("res://assets/sfx/DESTRUCTION Break Impact Smash Short 01.wav")
 @onready var PotProjectile = preload("res://scenes/pot_projectile/pot_projectile.tscn")
 
 
@@ -89,11 +91,10 @@ func start_cooldown_timer():
 
 func fire(projectile, velocity, distance):
 	ready_to_fire = false
-	SfxPlayer.play()
+	SfxPlayer.play_sfx(fire_sfx)
 	projectile.apply_impulse(velocity / 10 * distance)
 	projectile.throw_pot()
 	
-
 
 func set_line_points(pos : Vector2):
 	FrontLine.points[1] = pos
@@ -116,6 +117,7 @@ func _on_sling_cooldown_timeout():
 	
 
 func _on_pot_impacted():
+	SfxPlayer.play_sfx(break_sfx)
 	current_state = SlingshotState.cooldown
 	
 

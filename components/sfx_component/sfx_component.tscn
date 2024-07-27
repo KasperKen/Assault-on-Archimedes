@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://rqujydc4cdq5"]
+
+[ext_resource type="Script" path="res://components/sfx_component/SfxComponent.gd" id="1_hrm0f"]
+[ext_resource type="AudioStream" uid="uid://r02bycrkscw7" path="res://assets/sfx/slingshot.wav" id="2_4j8wy"]
+
+[node name="SfxComponent" type="Node"]
+script = ExtResource("1_hrm0f")
+
+[node name="sfx1" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_4j8wy")
+pitch_scale = 0.78
+
+[node name="sfx2" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_4j8wy")
+pitch_scale = 0.78
+
+[node name="sfx3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4j8wy")
+pitch_scale = 0.78
+
+[node name="sfx4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4j8wy")
+pitch_scale = 0.78
+
+[node name="sfx5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4j8wy")
+pitch_scale = 0.78
+
+[node name="sfx6" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4j8wy")
+pitch_scale = 0.78
+
+[node name="sfx7" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4j8wy")
+pitch_scale = 0.78
+
+[node name="sfx8" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4j8wy")
+pitch_scale = 0.78

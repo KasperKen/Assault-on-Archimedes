@@ -15,23 +15,27 @@ size = Vector2(111, 127.5)
 [node name="Map" parent="Level" instance=ExtResource("1_q8p1b")]
 
 [node name="ShadowOfRome" parent="Level" instance=ExtResource("4_tr8ev")]
-position = Vector2(1002, -30)
+position = Vector2(178, -24)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Level"]
 stream = ExtResource("9_32orb")
+autoplay = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player"]]
 
 [node name="Icon" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(118, -36)
+position = Vector2(24, -38)
 texture = ExtResource("4_wlnkl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(130, -39)
+position = Vector2(37, -39)
 shape = SubResource("RectangleShape2D_v056o")
 
 [node name="ShadowOfRome" parent="." instance=ExtResource("4_tr8ev")]
-position = Vector2(255, -32)
+position = Vector2(370, -28)
 
 [node name="ShadowOfRome2" parent="." instance=ExtResource("4_tr8ev")]
-position = Vector2(423, -35)
+position = Vector2(2855, -29)
+
+[node name="ShadowOfRome3" parent="." instance=ExtResource("4_tr8ev")]
+position = Vector2(5000, -33)

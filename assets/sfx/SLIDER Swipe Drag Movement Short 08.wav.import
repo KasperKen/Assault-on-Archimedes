@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bbc65n20iasst"
+path="res://.godot/imported/SLIDER Swipe Drag Movement Short 08.wav-a4b904c9d9fc69d0576e4bb34da7cbf5.sample"
+
+[deps]
+
+source_file="res://assets/sfx/SLIDER Swipe Drag Movement Short 08.wav"
+dest_files=["res://.godot/imported/SLIDER Swipe Drag Movement Short 08.wav-a4b904c9d9fc69d0576e4bb34da7cbf5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

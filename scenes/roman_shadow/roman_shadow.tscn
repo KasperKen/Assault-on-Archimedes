@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://ye8htlc6tagg"]
+[gd_scene load_steps=21 format=3 uid="uid://ye8htlc6tagg"]
 
 [ext_resource type="Script" path="res://scenes/roman_shadow/roman_shadow.gd" id="1_aqns1"]
 [ext_resource type="Texture2D" uid="uid://cjo7dpg37aqst" path="res://assets/roman_shadow.png" id="1_ilb4q"]
+[ext_resource type="PackedScene" uid="uid://rqujydc4cdq5" path="res://components/sfx_component/sfx_component.tscn" id="3_tdq8k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbw5q"]
 atlas = ExtResource("1_ilb4q")
@@ -124,7 +125,7 @@ script = ExtResource("1_aqns1")
 [node name="AnimationPlayer" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bccmd")
 animation = &"walk"
-frame_progress = 0.0641377
+frame_progress = 0.317887
 
 [node name="AttackArea" type="Area2D" parent="."]
 
@@ -166,6 +167,8 @@ scale_amount_max = 3.0
 color = Color(0.160784, 0.160784, 0.160784, 0.882353)
 anim_speed_min = 45.13
 anim_speed_max = 77.58
+
+[node name="SfxComponent" parent="." instance=ExtResource("3_tdq8k")]
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

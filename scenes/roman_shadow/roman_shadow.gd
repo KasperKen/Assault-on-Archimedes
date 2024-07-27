@@ -14,9 +14,11 @@ enum EnemyState{
 @export var health : int = 100
 @export var speed = 3000.0
 
+
 @onready var AnimatedSprite : AnimatedSprite2D = $AnimationPlayer
 @onready var AttackTimer : Timer = $AttackTimer
-
+@onready var SfxPlayer: Node = $SfxComponent
+@onready var attack_sfx = preload("res://assets/sfx/SWIPE Blade Chop Clang 01.wav")
 
 var current_state
 
@@ -53,6 +55,7 @@ func _physics_process(delta):
 func attack():
 	AnimatedSprite.play("attack")
 	if not current_opponent: return
+	SfxPlayer.play_sfx(attack_sfx)
 	if current_opponent.has_method("take_damage"):
 		current_opponent.take_damage(dmg)
 

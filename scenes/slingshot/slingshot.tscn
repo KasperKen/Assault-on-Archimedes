@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bkdp0nf4v24lf" path="res://assets/sling.png" id="1_7jipr"]
 [ext_resource type="Script" path="res://scenes/slingshot/slingshot.gd" id="1_a5mq1"]
 [ext_resource type="PackedScene" uid="uid://dt5dkiw3sjjh4" path="res://components/drag_component/drag_component.tscn" id="2_7w3po"]
-[ext_resource type="AudioStream" uid="uid://r02bycrkscw7" path="res://assets/sfx/slingshot.wav" id="4_uk1nj"]
+[ext_resource type="PackedScene" uid="uid://rqujydc4cdq5" path="res://components/sfx_component/sfx_component.tscn" id="4_ynbdp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqn4h"]
 radius = 59.4138
@@ -54,9 +54,6 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("4_uk1nj")
-pitch_scale = 0.78
+[node name="SfxComponent" parent="." instance=ExtResource("4_ynbdp")]
 
 [connection signal="timeout" from="SlingCooldown" to="." method="_on_sling_cooldown_timeout"]
