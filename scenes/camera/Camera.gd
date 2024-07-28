@@ -10,7 +10,7 @@ enum CameraState{
 
 @onready var Camera : Camera2D = $"."
 @onready var DefaultCameraLocation : Marker2D = $"../DefaultCameraLocation"
-@onready var Slingshot : Node2D = $"../Slingshot"
+@onready var Slingshot : Node2D = get_tree().get_first_node_in_group("Slingshot")
 @onready var CameraBoundary : Area2D = %CameraBoundary
 
 

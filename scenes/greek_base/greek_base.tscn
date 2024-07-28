@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cja3ndt0aogsy"]
+
+[ext_resource type="Texture2D" uid="uid://c25m3omvwwwkn" path="res://assets/base.png" id="1_7vrmm"]
+[ext_resource type="Script" path="res://scenes/greek_base/greek_base.gd" id="1_oa4id"]
+[ext_resource type="PackedScene" uid="uid://dg71nnetl3fyu" path="res://scenes/slingshot/slingshot.tscn" id="3_rbx7d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oq15c"]
+size = Vector2(20, 75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dmoc"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 0.666667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5mwf"]
+bg_color = Color(1, 0.137255, 0.137255, 0.607843)
+
+[node name="Base" type="StaticBody2D" groups=["NoPot", "Player"]]
+position = Vector2(1, 0)
+script = ExtResource("1_oa4id")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(10, -124)
+texture = ExtResource("1_7vrmm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(51, -37)
+shape = SubResource("RectangleShape2D_oq15c")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 39.0
+offset_top = -93.0
+offset_right = 87.0
+offset_bottom = -88.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5dmoc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o5mwf")
+value = 80.0
+show_percentage = false
+
+[node name="Slingshot" parent="." instance=ExtResource("3_rbx7d")]
+position = Vector2(45, -139)
+scale = Vector2(0.5, 0.5)
