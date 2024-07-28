@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce05yvtrl8myt"]
+[gd_scene load_steps=5 format=3 uid="uid://ce05yvtrl8myt"]
 
 [ext_resource type="PackedScene" uid="uid://mq3j3jq5yyom" path="res://scenes/maps/level1.tscn" id="1_q8p1b"]
 [ext_resource type="PackedScene" uid="uid://ye8htlc6tagg" path="res://scenes/roman_shadow/roman_shadow.tscn" id="4_tr8ev"]
-[ext_resource type="Texture2D" uid="uid://tflonxydx6cg" path="res://assets/icon.svg" id="4_wlnkl"]
 [ext_resource type="AudioStream" uid="uid://cnvikwbpbb5bd" path="res://assets/music/The_Warrior_Mage.wav" id="9_32orb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v056o"]
-size = Vector2(111, 127.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4hg43"]
+radius = 12.0
+height = 76.0
 
 [node name="Game" type="Node2D"]
 
@@ -15,27 +15,36 @@ size = Vector2(111, 127.5)
 [node name="Map" parent="Level" instance=ExtResource("1_q8p1b")]
 
 [node name="ShadowOfRome" parent="Level" instance=ExtResource("4_tr8ev")]
-position = Vector2(178, -24)
+position = Vector2(718, 3)
+scale = Vector2(1, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Level"]
 stream = ExtResource("9_32orb")
 autoplay = true
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player"]]
-
-[node name="Icon" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(24, -38)
-texture = ExtResource("4_wlnkl")
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player", "no_pot"]]
+position = Vector2(64, 18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(37, -39)
-shape = SubResource("RectangleShape2D_v056o")
+position = Vector2(19, -21)
+shape = SubResource("CapsuleShape2D_4hg43")
 
 [node name="ShadowOfRome" parent="." instance=ExtResource("4_tr8ev")]
-position = Vector2(370, -28)
-
-[node name="ShadowOfRome2" parent="." instance=ExtResource("4_tr8ev")]
-position = Vector2(2855, -29)
+position = Vector2(667, 0)
+scale = Vector2(1, 1)
 
 [node name="ShadowOfRome3" parent="." instance=ExtResource("4_tr8ev")]
-position = Vector2(5000, -33)
+position = Vector2(5002, -2)
+scale = Vector2(1, 1)
+
+[node name="ShadowOfRome2" parent="." instance=ExtResource("4_tr8ev")]
+position = Vector2(2113, -1)
+scale = Vector2(1, 1)
+
+[node name="ShadowOfRome4" parent="." instance=ExtResource("4_tr8ev")]
+position = Vector2(2301, -1)
+scale = Vector2(1, 1)
+
+[node name="ShadowOfRome5" parent="." instance=ExtResource("4_tr8ev")]
+position = Vector2(2864, 0)
+scale = Vector2(1, 1)

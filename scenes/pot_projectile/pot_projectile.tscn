@@ -11,6 +11,7 @@ height = 68.0
 script = ExtResource("1_adxoe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_gofvr")
 
 [node name="Area2D" type="Area2D" parent="."]
