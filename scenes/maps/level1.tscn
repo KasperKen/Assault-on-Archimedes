@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://mq3j3jq5yyom"]
+[gd_scene load_steps=15 format=3 uid="uid://mq3j3jq5yyom"]
 
 [ext_resource type="Texture2D" uid="uid://63h7r4dk2l2s" path="res://assets/map/tilemap.png" id="1_7ld8k"]
 [ext_resource type="Texture2D" uid="uid://bknuh4chyvkbk" path="res://assets/map/background/GandalfHardcore Background layers_layer 5.png" id="2_md6g4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://6iei5uw18pld" path="res://assets/map/background/GandalfHardcore Background layers_layer 2.png" id="5_jbwqa"]
 [ext_resource type="Texture2D" uid="uid://c0ovaghyvdqw7" path="res://assets/map/background/GandalfHardcore Background layers_layer 1.png" id="6_fgq2c"]
 [ext_resource type="PackedScene" uid="uid://bppk3o2d4wr4n" path="res://scenes/camera/Camera.tscn" id="8_qer8s"]
+[ext_resource type="PackedScene" uid="uid://ddrp4wqqvhbta" path="res://scenes/roman_base/roman_base.tscn" id="9_7evxo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4l3hr"]
 texture = ExtResource("1_7ld8k")
@@ -596,3 +597,6 @@ position = Vector2(127, -143)
 
 [node name="Camera" parent="." instance=ExtResource("8_qer8s")]
 position = Vector2(128, -144)
+
+[node name="RomanBase" parent="." instance=ExtResource("9_7evxo")]
+position = Vector2(2346, -9)

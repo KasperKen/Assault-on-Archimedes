@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddrp4wqqvhbta"]
+
+[ext_resource type="Texture2D" uid="uid://tflonxydx6cg" path="res://assets/icon.svg" id="1_0kwa2"]
+[ext_resource type="Script" path="res://scenes/roman_base/roman_base.gd" id="1_pbkct"]
+
+[node name="RomanBase" type="StaticBody2D"]
+position = Vector2(10, 20)
+script = ExtResource("1_pbkct")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-11, -22)
+texture = ExtResource("1_0kwa2")
+
+[node name="EnemySpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-132, 12)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

@@ -51,7 +51,7 @@ texture = ExtResource("1_7jipr")
 
 [node name="SlingCooldown" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 1.5
 one_shot = true
 
 [node name="SfxComponent" parent="." instance=ExtResource("4_ynbdp")]

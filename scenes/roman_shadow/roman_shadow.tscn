@@ -107,10 +107,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynpju"]
-size = Vector2(25, 21)
+size = Vector2(11.5, 21)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_haepp"]
-size = Vector2(40, 53)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwu0x"]
+radius = 23.0
+height = 79.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc4ln"]
 bg_color = Color(0.105882, 0.0431373, 0, 0.466667)
@@ -119,7 +120,6 @@ bg_color = Color(0.105882, 0.0431373, 0, 0.466667)
 bg_color = Color(0.603922, 0, 0.0588235, 0.776471)
 
 [node name="ShadowOfRome" type="CharacterBody2D"]
-scale = Vector2(2, 2)
 script = ExtResource("1_aqns1")
 
 [node name="AnimationPlayer" type="AnimatedSprite2D" parent="."]
@@ -128,14 +128,15 @@ animation = &"walk"
 frame_progress = 0.317887
 
 [node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(-7, 3)
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-20.5, -4)
+position = Vector2(-16.25, -3)
 shape = SubResource("RectangleShape2D_ynpju")
 
 [node name="HurtBox" type="CollisionShape2D" parent="."]
-position = Vector2(13, -2.5)
-shape = SubResource("RectangleShape2D_haepp")
+position = Vector2(7, 0)
+shape = SubResource("CapsuleShape2D_gwu0x")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.5
