@@ -13,6 +13,7 @@ height = 76.0
 [node name="Level" type="Node2D" parent="."]
 
 [node name="Map" parent="Level" instance=ExtResource("1_q8p1b")]
+position = Vector2(5, 7)
 
 [node name="ShadowOfRome" parent="Level" instance=ExtResource("4_tr8ev")]
 position = Vector2(718, 3)

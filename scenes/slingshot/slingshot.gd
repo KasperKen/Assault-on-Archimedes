@@ -47,7 +47,7 @@ func _process(delta):
 	var drag_pos = get_local_mouse_position()
 	
 	if drag_pos.distance_to(Center.position) > 150:
-		drag_pos = (drag_pos - Center.position).normalized() * 150 + Center.position
+		drag_pos = (drag_pos - Center.position).normalized() * 175 + Center.position
 	if dragging:
 		set_line_points(drag_pos)
 	if not dragging:
@@ -92,7 +92,7 @@ func start_cooldown_timer():
 func fire(projectile, velocity, distance):
 	ready_to_fire = false
 	SfxPlayer.play_sfx(fire_sfx)
-	projectile.apply_impulse(velocity / 10 * distance)
+	projectile.apply_impulse(velocity / 20 * distance)
 	projectile.throw_pot()
 	
 
