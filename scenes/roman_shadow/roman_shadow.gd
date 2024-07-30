@@ -7,7 +7,8 @@ signal death
 enum EnemyState{
 	walking,
 	attacking,
-	idle
+	idle,
+	trapped
 }
 
 
@@ -19,13 +20,15 @@ enum EnemyState{
 @onready var AttackTimer : Timer = $AttackTimer
 @onready var SfxPlayer: Node = $SfxComponent
 @onready var attack_sfx = preload("res://assets/sfx/SWIPE Blade Chop Clang 01.wav")
+@onready var TrapTimer = $TrapTimer
+
 
 var current_state
-
 var direction = "left"
 var current_opponent : Node2D
 var dmg : int = 10
 var attack_timer_started = false
+var trapped : bool = false
 
 
 func _ready():
@@ -37,18 +40,23 @@ func _ready():
 	
 func _physics_process(delta):
 	$ProgressBar.value = health
+	if trapped: current_state = EnemyState.trapped
+	
 	match current_state:
 
 		EnemyState.walking:
 			AnimatedSprite.play("walk")
-			velocity.x = speed * delta
-			move_and_slide()
+			position += Vector2(-1,0)
 
 		EnemyState.attacking:
 			if current_opponent: start_attack_timer()
 
 		EnemyState.idle:
 			AnimatedSprite.play("idle")
+		
+		EnemyState.trapped:
+			AnimatedSprite.play("idle")
+			if not trapped: current_state = EnemyState.walking
 
 
 
@@ -73,6 +81,13 @@ func take_damage(damage):
 		queue_free()
 
 
+func trap():
+	trapped = true
+	TrapTimer.start()
+
+func release():
+	trapped = false
+
 func _on_attack_area_body_entered(body):
 	if body.is_in_group("Player"): 
 		current_opponent = body
@@ -82,10 +97,17 @@ func _on_attack_area_body_entered(body):
 
 
 func _on_attack_area_body_exited(body):
-	current_state = EnemyState.walking
 	current_opponent = null
+	if trapped == true:
+		current_state = EnemyState.trapped
+	else: 
+		current_state = EnemyState.walking
 
 
 func _on_attack_timer_timeout():
 	attack_timer_started = false
 	if current_opponent: attack()
+
+
+func _on_trap_timer_timeout():
+	release()

@@ -15,6 +15,7 @@ bg_color = Color(1, 0.137255, 0.137255, 0.607843)
 
 [node name="Base" type="StaticBody2D" groups=["NoPot", "Player"]]
 position = Vector2(1, 0)
+collision_mask = 2
 script = ExtResource("1_oa4id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -35,6 +36,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_o5mwf")
 value = 80.0
 show_percentage = false
 
-[node name="Slingshot" parent="." instance=ExtResource("3_rbx7d")]
+[node name="Slingshot" parent="." groups=["Slingshot"] instance=ExtResource("3_rbx7d")]
 position = Vector2(45, -139)
 scale = Vector2(0.5, 0.5)

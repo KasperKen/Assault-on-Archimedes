@@ -24,7 +24,7 @@ func throw_pot():
 	
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("NoPot") : return
+	if body.is_in_group("NoPot"): return
 	if body.has_method("take_damage"): body.take_damage(dmg)
 	emit_signal("pot_impacted")
 	queue_free()

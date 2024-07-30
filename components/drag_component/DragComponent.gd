@@ -16,6 +16,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Global.game_over:
+		return
 	if hover and Input.is_action_just_pressed("select"):
 		enable_drag()
 	if drag and Input.is_action_just_released("select"):

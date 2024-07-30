@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://p08hvxk4qh8t"]
+
+[ext_resource type="Texture2D" uid="uid://crb072mvv8ikc" path="res://assets/ball.png" id="1_4rif6"]
+[ext_resource type="Script" path="res://scenes/bear_trap/bear_trap.gd" id="1_ugorn"]
+[ext_resource type="Texture2D" uid="uid://b4hqa4ulhn61o" path="res://assets/bear_trap.png" id="2_pkpu0"]
+[ext_resource type="PackedScene" uid="uid://drde7n208lisp" path="res://scenes/bear_trap/chain_link.tscn" id="3_tqfoe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8jf07"]
+radius = 13.0384
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jion"]
+radius = 10.9999
+height = 27.996
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y7cr6"]
+radius = 7.03713
+
+[node name="BearTrap" type="Node2D"]
+position = Vector2(-21, -39)
+rotation = -1.5717
+script = ExtResource("1_ugorn")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Ball" type="RigidBody2D" parent="." groups=["NoEntityCollide"]]
+position = Vector2(-40.9955, -5.03705)
+collision_layer = 0
+collision_mask = 4
+mass = 1000.0
+
+[node name="BallSprite" type="Sprite2D" parent="Ball"]
+texture = ExtResource("1_4rif6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_8jf07")
+
+[node name="BallJoint" type="PinJoint2D" parent="."]
+position = Vector2(-41.0045, 4.96295)
+node_a = NodePath("../Ball")
+node_b = NodePath("../ChainLink")
+
+[node name="ChainLink" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41, 6)
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(-41.0081, 8.96295)
+node_a = NodePath("../ChainLink")
+node_b = NodePath("../ChainLink2")
+
+[node name="ChainLink2" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41, 12)
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(-41.0126, 13.9629)
+node_a = NodePath("../ChainLink2")
+node_b = NodePath("../ChainLink3")
+
+[node name="ChainLink3" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41, 18)
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+position = Vector2(-41.0181, 19.9629)
+node_a = NodePath("../ChainLink3")
+node_b = NodePath("../ChainLink4")
+
+[node name="ChainLink4" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41, 24)
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="."]
+position = Vector2(-41.0244, 26.9629)
+node_a = NodePath("../ChainLink4")
+node_b = NodePath("../ChainLink5")
+
+[node name="ChainLink5" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41.0271, 29.9629)
+
+[node name="TeethJoint" type="PinJoint2D" parent="."]
+position = Vector2(-41.0289, 31.9629)
+node_a = NodePath("../ChainLink5")
+node_b = NodePath("../Teeth")
+
+[node name="Teeth" type="RigidBody2D" parent="." groups=["NoEntityCollide"]]
+position = Vector2(-41.0352, 38.9629)
+collision_layer = 0
+collision_mask = 8
+
+[node name="TeethSprite" type="Sprite2D" parent="Teeth"]
+texture = ExtResource("2_pkpu0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teeth"]
+visible = false
+position = Vector2(9.31323e-10, 2)
+rotation = 1.57399
+shape = SubResource("CapsuleShape2D_4jion")
+
+[node name="TrapArea" type="Area2D" parent="Teeth"]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teeth/TrapArea"]
+position = Vector2(-0.0379338, 0.962933)
+shape = SubResource("CircleShape2D_y7cr6")
+
+[node name="TrapJoint" type="PinJoint2D" parent="Teeth"]
+position = Vector2(-0.000930309, 1.00003)
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_trap_timer_timeout"]
+[connection signal="body_entered" from="Teeth/TrapArea" to="." method="_on_trap_area_body_entered"]

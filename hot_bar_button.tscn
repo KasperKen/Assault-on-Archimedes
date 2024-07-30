@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3rllcjp6ib5o"]
+
+[ext_resource type="Script" path="res://HotBarButton.gd" id="1_rbk1e"]
+[ext_resource type="Texture2D" uid="uid://c33do0lk4pst8" path="res://assets/button.png" id="2_diqyd"]
+
+[node name="IngredientButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_rbk1e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -1.3125
+offset_top = -7.1875
+offset_right = 38.6875
+offset_bottom = 32.8125
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0.544974, 0.544974, 0.544974, 0.772549)
+theme_override_colors/icon_hover_color = Color(0.310617, 0.310617, 0.310617, 0.698039)
+theme_override_colors/icon_hover_pressed_color = Color(0.309804, 0.309804, 0.309804, 0.698039)
+toggle_mode = true
+
+[node name="Outline" type="Sprite2D" parent="ColorRect/Button"]
+position = Vector2(20.1562, 20.5938)
+scale = Vector2(1.75272, 1.79076)
+texture = ExtResource("2_diqyd")
+
+[connection signal="toggled" from="ColorRect/Button" to="." method="_on_button_toggled"]

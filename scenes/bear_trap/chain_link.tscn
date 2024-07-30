@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://drde7n208lisp"]
+
+[ext_resource type="Texture2D" uid="uid://batqn42ygr8hn" path="res://assets/chain_link.png" id="1_5onin"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bggi"]
+size = Vector2(4, 6)
+
+[node name="ChainLink" type="RigidBody2D" groups=["NoEntityCollide"]]
+collision_layer = 0
+collision_mask = 0
+
+[node name="ChainLink" type="Sprite2D" parent="."]
+texture = ExtResource("1_5onin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5bggi")

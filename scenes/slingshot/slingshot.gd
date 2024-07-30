@@ -34,13 +34,13 @@ var pot_projectile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_to_group("Slingshot")
 	DragComponent.drag_enabled.connect(_on_drag_enabled)
 	DragComponent.drag_disabled.connect(_on_drag_disabled)
 	FrontLine.points[0] = FrontPoint.position
 	BackLine.points[0] = BackPoint.position
 	current_state = SlingshotState.idle
 	spawn_pot()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
