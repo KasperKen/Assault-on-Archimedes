@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scenes/roman_base/roman_base.gd" id="1_pbkct"]
 
 [node name="RomanBase" type="StaticBody2D"]
+z_index = -1
 position = Vector2(10, 20)
 script = ExtResource("1_pbkct")
 
