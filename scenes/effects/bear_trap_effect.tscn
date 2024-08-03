@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://i1l7i04opkkc"]
+
+[ext_resource type="Script" path="res://scenes/effects/BearTrapEffect.gd" id="1_dwmus"]
+
+[node name="BearTrapEffect" type="Node2D"]
+script = ExtResource("1_dwmus")

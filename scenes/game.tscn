@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce05yvtrl8myt"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_xhf24"]
+[ext_resource type="PackedScene" uid="uid://dqkiicf1vnjyh" path="res://scenes/ui/HotBar.tscn" id="2_58ygr"]
+[ext_resource type="PackedScene" uid="uid://mq3j3jq5yyom" path="res://scenes/maps/level1.tscn" id="3_xis66"]
+[ext_resource type="PackedScene" uid="uid://bppk3o2d4wr4n" path="res://scenes/camera/Camera.tscn" id="4_42rdg"]
+[ext_resource type="PackedScene" uid="uid://ye8htlc6tagg" path="res://scenes/roman_shadow/roman_shadow.tscn" id="5_bw0cn"]
+[ext_resource type="AudioStream" uid="uid://cnvikwbpbb5bd" path="res://assets/music/The_Warrior_Mage.wav" id="6_sko45"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_xhf24")
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="HotBar" parent="UI" instance=ExtResource("2_58ygr")]
+mouse_filter = 2
+
+[node name="Level" parent="." instance=ExtResource("3_xis66")]
+position = Vector2(192, 325)
+
+[node name="Camera" parent="." instance=ExtResource("4_42rdg")]
+position = Vector2(318, 180)
+
+[node name="ShadowOfRome" parent="." instance=ExtResource("5_bw0cn")]
+position = Vector2(653, 321)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sko45")
+autoplay = true

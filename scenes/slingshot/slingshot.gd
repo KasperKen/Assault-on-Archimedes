@@ -92,7 +92,7 @@ func start_cooldown_timer():
 func fire(projectile, velocity, distance):
 	ready_to_fire = false
 	SfxPlayer.play_sfx(fire_sfx)
-	projectile.apply_impulse(velocity / 20 * distance)
+	projectile.apply_impulse(velocity / 22 * distance)
 	projectile.throw_pot()
 	
 

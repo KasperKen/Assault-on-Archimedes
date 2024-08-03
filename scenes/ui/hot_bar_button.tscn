@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3rllcjp6ib5o"]
+
+[ext_resource type="Theme" uid="uid://um3ccdpdgpnq" path="res://scenes/ui/hot_bar_button_colors.tres" id="1_04fcq"]
+[ext_resource type="Script" path="res://scenes/ui/HotBarButton.gd" id="1_rbk1e"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7i4pv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ye1b3"]
+bg_color = Color(0.282353, 0.282353, 0.282353, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jdpd"]
+bg_color = Color(0, 0, 0, 0.619608)
+
+[node name="HotbarButton" type="Button" groups=["HotbarButtons"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_04fcq")
+theme_override_colors/font_disabled_color = Color(0.714181, 0.0330177, 0.0249365, 1)
+theme_override_font_sizes/font_size = 24
+toggle_mode = true
+icon = SubResource("CanvasTexture_7i4pv")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_rbk1e")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CooldownBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ye1b3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7jdpd")
+max_value = 30.0
+step = 0.005
+fill_mode = 2
+show_percentage = false
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

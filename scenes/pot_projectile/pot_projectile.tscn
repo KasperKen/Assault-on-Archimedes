@@ -7,9 +7,9 @@
 radius = 20.0
 height = 68.0
 
-[node name="PotProjectile" type="RigidBody2D"]
-collision_layer = 18
-collision_mask = 18
+[node name="PotProjectile" type="RigidBody2D" groups=["Pot"]]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_adxoe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

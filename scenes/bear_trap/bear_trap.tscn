@@ -1,21 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://p08hvxk4qh8t"]
+[gd_scene load_steps=10 format=3 uid="uid://p08hvxk4qh8t"]
 
 [ext_resource type="Texture2D" uid="uid://crb072mvv8ikc" path="res://assets/ball.png" id="1_4rif6"]
 [ext_resource type="Script" path="res://scenes/bear_trap/bear_trap.gd" id="1_ugorn"]
 [ext_resource type="Texture2D" uid="uid://b4hqa4ulhn61o" path="res://assets/bear_trap.png" id="2_pkpu0"]
 [ext_resource type="PackedScene" uid="uid://drde7n208lisp" path="res://scenes/bear_trap/chain_link.tscn" id="3_tqfoe"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khe25"]
+friction = 9.22337e+18
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8jf07"]
 radius = 13.0384
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jion"]
-radius = 10.9999
-height = 27.996
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iqt1j"]
+friction = 3.85
+rough = true
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y7cr6"]
-radius = 7.03713
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmj40"]
+size = Vector2(25.9873, 14.0235)
 
-[node name="BearTrap" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqsul"]
+size = Vector2(26.0009, 14.0253)
+
+[node name="BearTrap" type="Node2D" groups=["BearTrap"]]
 position = Vector2(-21, -39)
 rotation = -1.5717
 script = ExtResource("1_ugorn")
@@ -25,10 +31,11 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Ball" type="RigidBody2D" parent="." groups=["NoEntityCollide"]]
-position = Vector2(-40.9955, -5.03705)
+position = Vector2(-40.9973, -3.03705)
 collision_layer = 0
-collision_mask = 4
-mass = 1000.0
+collision_mask = 2
+mass = 9999.0
+physics_material_override = SubResource("PhysicsMaterial_khe25")
 
 [node name="BallSprite" type="Sprite2D" parent="Ball"]
 texture = ExtResource("1_4rif6")
@@ -37,31 +44,31 @@ texture = ExtResource("1_4rif6")
 shape = SubResource("CircleShape2D_8jf07")
 
 [node name="BallJoint" type="PinJoint2D" parent="."]
-position = Vector2(-41.0045, 4.96295)
+position = Vector2(-41.0054, 5.96295)
 node_a = NodePath("../Ball")
 node_b = NodePath("../ChainLink")
 
 [node name="ChainLink" parent="." instance=ExtResource("3_tqfoe")]
-position = Vector2(-41, 6)
+position = Vector2(-41.0081, 8.96295)
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="."]
-position = Vector2(-41.0081, 8.96295)
+position = Vector2(-41.0108, 11.9629)
 node_a = NodePath("../ChainLink")
 node_b = NodePath("../ChainLink2")
 
 [node name="ChainLink2" parent="." instance=ExtResource("3_tqfoe")]
-position = Vector2(-41, 12)
+position = Vector2(-41.0126, 13.9629)
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="."]
-position = Vector2(-41.0126, 13.9629)
+position = Vector2(-41.0153, 16.9629)
 node_a = NodePath("../ChainLink2")
 node_b = NodePath("../ChainLink3")
 
 [node name="ChainLink3" parent="." instance=ExtResource("3_tqfoe")]
-position = Vector2(-41, 18)
+position = Vector2(-41.0172, 18.9629)
 
 [node name="PinJoint2D4" type="PinJoint2D" parent="."]
-position = Vector2(-41.0181, 19.9629)
+position = Vector2(-41.0199, 21.9629)
 node_a = NodePath("../ChainLink3")
 node_b = NodePath("../ChainLink4")
 
@@ -74,37 +81,94 @@ node_a = NodePath("../ChainLink4")
 node_b = NodePath("../ChainLink5")
 
 [node name="ChainLink5" parent="." instance=ExtResource("3_tqfoe")]
-position = Vector2(-41.0271, 29.9629)
+position = Vector2(-41.0262, 28.9629)
 
-[node name="TeethJoint" type="PinJoint2D" parent="."]
+[node name="PinJoint2D6" type="PinJoint2D" parent="."]
 position = Vector2(-41.0289, 31.9629)
 node_a = NodePath("../ChainLink5")
+node_b = NodePath("../ChainLink6")
+
+[node name="ChainLink6" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41.0307, 33.9629)
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="."]
+position = Vector2(-41.0334, 36.9629)
+node_a = NodePath("../ChainLink6")
+node_b = NodePath("../ChainLink7")
+
+[node name="ChainLink7" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41.0352, 38.9629)
+
+[node name="PinJoint2D8" type="PinJoint2D" parent="."]
+position = Vector2(-41.0379, 41.9629)
+node_a = NodePath("../ChainLink7")
+node_b = NodePath("../ChainLink8")
+
+[node name="ChainLink8" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41.0397, 43.9629)
+
+[node name="PinJoint2D9" type="PinJoint2D" parent="."]
+position = Vector2(-41.0425, 46.9629)
+node_a = NodePath("../ChainLink8")
+node_b = NodePath("../ChainLink9")
+
+[node name="ChainLink9" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41.0443, 48.9629)
+
+[node name="PinJoint2D10" type="PinJoint2D" parent="."]
+position = Vector2(-41.047, 51.9629)
+node_a = NodePath("../ChainLink9")
+node_b = NodePath("../ChainLink10")
+
+[node name="ChainLink10" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41.0488, 53.9629)
+
+[node name="PinJoint2D11" type="PinJoint2D" parent="."]
+position = Vector2(-41.0515, 56.9629)
+node_a = NodePath("../ChainLink10")
+node_b = NodePath("../ChainLink11")
+
+[node name="ChainLink11" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41.0533, 58.9629)
+
+[node name="PinJoint2D12" type="PinJoint2D" parent="."]
+position = Vector2(-41.056, 61.9629)
+node_a = NodePath("../ChainLink11")
+node_b = NodePath("../ChainLink12")
+
+[node name="ChainLink12" parent="." instance=ExtResource("3_tqfoe")]
+position = Vector2(-41.0578, 63.9629)
+
+[node name="TeethJoint" type="PinJoint2D" parent="."]
+position = Vector2(-41.0605, 66.9629)
+node_a = NodePath("../ChainLink12")
 node_b = NodePath("../Teeth")
 
 [node name="Teeth" type="RigidBody2D" parent="." groups=["NoEntityCollide"]]
-position = Vector2(-41.0352, 38.9629)
+position = Vector2(-41.0678, 74.9629)
 collision_layer = 0
-collision_mask = 8
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_iqt1j")
 
 [node name="TeethSprite" type="Sprite2D" parent="Teeth"]
 texture = ExtResource("2_pkpu0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Teeth"]
-visible = false
-position = Vector2(9.31323e-10, 2)
-rotation = 1.57399
-shape = SubResource("CapsuleShape2D_4jion")
-
 [node name="TrapArea" type="Area2D" parent="Teeth"]
-collision_layer = 255
-collision_mask = 255
+collision_layer = 8
+collision_mask = 97
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teeth/TrapArea"]
-position = Vector2(-0.0379338, 0.962933)
-shape = SubResource("CircleShape2D_y7cr6")
+position = Vector2(-0.00180769, 2.00001)
+shape = SubResource("RectangleShape2D_vmj40")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teeth"]
+position = Vector2(-0.00860953, 1.99914)
+shape = SubResource("RectangleShape2D_xqsul")
 
 [node name="TrapJoint" type="PinJoint2D" parent="Teeth"]
-position = Vector2(-0.000930309, 1.00003)
+position = Vector2(-0.000903657, 1.00001)
+scale = Vector2(2, 2)
+node_a = NodePath("..")
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_trap_timer_timeout"]
 [connection signal="body_entered" from="Teeth/TrapArea" to="." method="_on_trap_area_body_entered"]

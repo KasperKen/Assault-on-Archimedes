@@ -501,7 +501,7 @@ size = Vector2(500.5, 2613)
 size = Vector2(57, 2966)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yetia"]
-size = Vector2(47027, 1751)
+size = Vector2(47027, 1756.5)
 
 [node name="Level1" type="Node2D"]
 position = Vector2(194, 325)
@@ -576,8 +576,9 @@ z_index = 50
 [node name="RomanBase" parent="PlayArea" instance=ExtResource("9_7evxo")]
 z_index = -50
 z_as_relative = false
-position = Vector2(2346, -9)
+position = Vector2(2345, -52)
 scale = Vector2(1, 0.905272)
+collision_layer = 0
 
 [node name="GreekBase" parent="PlayArea" instance=ExtResource("2_y0qvi")]
 z_index = -50
@@ -597,6 +598,7 @@ position = Vector2(-268, -1276)
 shape = SubResource("RectangleShape2D_gao7j")
 
 [node name="RightBoundary" type="StaticBody2D" parent="PlayArea/Boundaries" groups=["no_right"]]
+position = Vector2(-2967, 209)
 collision_layer = 5
 collision_mask = 5
 
@@ -605,11 +607,11 @@ position = Vector2(5438, -1270)
 shape = SubResource("RectangleShape2D_aiph4")
 
 [node name="FloorBoundary" type="StaticBody2D" parent="PlayArea/Boundaries"]
-collision_layer = 13
-collision_mask = 0
+collision_layer = 31
+collision_mask = 16
 
 [node name="FloorBoundaryCollission" type="CollisionShape2D" parent="PlayArea/Boundaries/FloorBoundary"]
-position = Vector2(31, 913)
+position = Vector2(-49, 907)
 shape = SubResource("RectangleShape2D_yetia")
 
 [node name="DefaultCameraLocation" type="Marker2D" parent="PlayArea" groups=["DefaultCameraPosition"]]

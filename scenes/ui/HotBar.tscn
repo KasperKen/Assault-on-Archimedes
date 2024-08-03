@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqkiicf1vnjyh"]
+
+[ext_resource type="Script" path="res://scenes/ui/HotBar.gd" id="1_4qhhm"]
+[ext_resource type="PackedScene" uid="uid://c3rllcjp6ib5o" path="res://scenes/ui/hot_bar_button.tscn" id="1_lhfyq"]
+[ext_resource type="ButtonGroup" uid="uid://d1wt0kq2yuvk8" path="res://scenes/ui/Hotbarbuttons.tres" id="3_2aw8y"]
+[ext_resource type="PackedScene" uid="uid://i1l7i04opkkc" path="res://scenes/effects/bear_trap_effect.tscn" id="5_na1gi"]
+[ext_resource type="Texture2D" uid="uid://b4hqa4ulhn61o" path="res://assets/bear_trap.png" id="5_uh142"]
+[ext_resource type="Texture2D" uid="uid://m7co0v08axmo" path="res://assets/grease.png" id="6_2d86s"]
+[ext_resource type="PackedScene" uid="uid://b3x3dsf8d3284" path="res://scenes/effects/grease_effect.tscn" id="6_6amr4"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4qhhm")
+
+[node name="HBoxButtonContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+offset_left = -62.0
+offset_top = 10.0
+offset_right = -244.0
+offset_bottom = 52.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="HBoxButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.141176, 0.12549, 0.113725, 0)
+
+[node name="HotbarButton1" parent="HBoxButtonContainer/ColorRect" groups=["HotBarButtons"] instance=ExtResource("1_lhfyq")]
+layout_mode = 1
+button_group = ExtResource("3_2aw8y")
+icon = ExtResource("5_uh142")
+Ammo = ExtResource("5_na1gi")
+CooldownTime = 12.0
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HotbarButton2" parent="HBoxButtonContainer/ColorRect2" instance=ExtResource("1_lhfyq")]
+layout_mode = 1
+button_group = ExtResource("3_2aw8y")
+icon = ExtResource("6_2d86s")
+Ammo = ExtResource("6_6amr4")
+CooldownTime = 25.0
+
+[node name="ColorRect3" type="ColorRect" parent="HBoxButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HotbarButton3" parent="HBoxButtonContainer/ColorRect3" instance=ExtResource("1_lhfyq")]
+layout_mode = 1
+size_flags_stretch_ratio = 0.0
+button_group = ExtResource("3_2aw8y")

@@ -16,7 +16,7 @@ bg_color = Color(1, 0.137255, 0.137255, 0.607843)
 [node name="Base" type="StaticBody2D" groups=["NoPot", "Player"]]
 z_index = -1
 position = Vector2(1, 0)
-collision_mask = 2
+collision_layer = 98
 script = ExtResource("1_oa4id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cjo7dpg37aqst" path="res://assets/roman_shadow.png" id="1_ilb4q"]
 [ext_resource type="PackedScene" uid="uid://rqujydc4cdq5" path="res://components/sfx_component/sfx_component.tscn" id="3_tdq8k"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwu0x"]
-radius = 23.0
-height = 79.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6e2e"]
+size = Vector2(40, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynpju"]
 size = Vector2(22.5, 21)
@@ -119,20 +118,21 @@ bg_color = Color(0.105882, 0.0431373, 0, 0.466667)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imhxu"]
 bg_color = Color(0.603922, 0, 0.0588235, 0.776471)
 
-[node name="ShadowOfRome" type="CharacterBody2D" groups=["Enemy", "Entity"]]
+[node name="ShadowOfRome" type="RigidBody2D" groups=["Enemies", "Entities"]]
 z_index = 1
-collision_layer = 19
-collision_mask = 27
+collision_layer = 33
+collision_mask = 202
+center_of_mass_mode = 1
 script = ExtResource("1_aqns1")
 
 [node name="HurtBox" type="CollisionShape2D" parent="."]
-position = Vector2(7, 0)
-shape = SubResource("CapsuleShape2D_gwu0x")
+position = Vector2(5, 2)
+shape = SubResource("RectangleShape2D_n6e2e")
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(-7, 3)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 33
+collision_mask = 64
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-21.75, -3)
@@ -180,7 +180,17 @@ anim_speed_max = 77.58
 wait_time = 10.0
 one_shot = true
 
+[node name="GreaseTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="StandupTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="TrapTimer" to="." method="_on_trap_timer_timeout"]
+[connection signal="timeout" from="GreaseTimer" to="." method="_on_grease_timer_timeout"]
+[connection signal="timeout" from="StandupTimer" to="." method="_on_standup_timer_timeout"]

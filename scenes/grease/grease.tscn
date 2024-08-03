@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://bkfd25wnbf3jn"]
+
+[ext_resource type="Script" path="res://scenes/grease/grease.gd" id="1_cxe41"]
+[ext_resource type="Texture2D" uid="uid://x40pqvrufyem" path="res://assets/oil.png" id="2_ilu1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emy14"]
+atlas = ExtResource("2_ilu1j")
+region = Rect2(0, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn5ha"]
+atlas = ExtResource("2_ilu1j")
+region = Rect2(128, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfc68"]
+atlas = ExtResource("2_ilu1j")
+region = Rect2(256, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i78l"]
+atlas = ExtResource("2_ilu1j")
+region = Rect2(0, 32, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6hne"]
+atlas = ExtResource("2_ilu1j")
+region = Rect2(128, 32, 128, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hf343"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emy14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn5ha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfc68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i78l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6hne")
+}],
+"loop": false,
+"name": &"spill",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwo8b"]
+size = Vector2(84.5, 1.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cejbb"]
+size = Vector2(119, 2)
+
+[node name="Grease" type="RigidBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_cxe41")
+
+[node name="OilAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -7)
+sprite_frames = SubResource("SpriteFrames_hf343")
+animation = &"spill"
+frame = 4
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 235
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_rwo8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 1)
+shape = SubResource("RectangleShape2D_cejbb")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
